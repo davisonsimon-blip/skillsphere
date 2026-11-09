@@ -564,3 +564,4 @@ export const ForumPage: React.FC = () => {
     </div>
   );
 };
+

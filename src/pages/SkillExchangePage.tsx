@@ -582,3 +582,4 @@ export const SkillExchangePage: React.FC = () => {
     </div>
   );
 };
+

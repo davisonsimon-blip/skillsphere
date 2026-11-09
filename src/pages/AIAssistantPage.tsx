@@ -601,3 +601,4 @@ export const AIAssistantPage: React.FC = () => {
     </div>
   );
 };
+

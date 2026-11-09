@@ -180,3 +180,4 @@ export interface QuizQuestion {
   correctAnswer: number;
   explanation: string;
 }
+

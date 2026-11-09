@@ -618,3 +618,4 @@ export const FAQ_ITEMS = [
     answer: 'Yes! We have automated content filters, verified student badges, community review scores, and an active Administrator moderation dashboard where inappropriate behavior or spam can be reported and resolved immediately.'
   }
 ];
+

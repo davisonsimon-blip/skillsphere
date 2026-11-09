@@ -338,3 +338,4 @@ export const GamificationPage: React.FC = () => {
     </div>
   );
 };
+

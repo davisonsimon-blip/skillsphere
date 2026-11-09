@@ -32,3 +32,4 @@ export const triggerLevelUpConfetti = () => {
     console.error('Level up confetti error', err);
   }
 };
+
