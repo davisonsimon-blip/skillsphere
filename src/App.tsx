@@ -1,86 +1,89 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ThemeProvider } from './context/ThemeContext';
-import { AuthProvider } from './context/AuthContext';
-import { AppProvider, useApp } from './context/AppContext';
-
-import { Navbar } from './components/common/Navbar';
-import { Footer } from './components/common/Footer';
-import { AIAssistantModal } from './components/ai/AIAssistantModal';
-
-import { HomePage } from './pages/HomePage';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { TelemetryProvider } from './context/TelemetryContext';
+import { Navbar } from './components/Navbar';
 import { DashboardPage } from './pages/DashboardPage';
-import { PeerMatchingPage } from './pages/PeerMatchingPage';
-import { SkillExchangePage } from './pages/SkillExchangePage';
-import { LiveRoomPage } from './pages/LiveRoomPage';
-import { ForumPage } from './pages/ForumPage';
-import { GamificationPage } from './pages/GamificationPage';
-import { AIAssistantPage } from './pages/AIAssistantPage';
-import { AdminPage } from './pages/AdminPage';
-import { ProfilePage } from './pages/ProfilePage';
-import { AuthPage } from './pages/AuthPage';
+import { HardwarePage } from './pages/HardwarePage';
+import { FirmwarePage } from './pages/FirmwarePage';
+import { ComparisonPage } from './pages/ComparisonPage';
+import { AnalyticsPage } from './pages/AnalyticsPage';
+import { PresentationPage } from './pages/PresentationPage';
+import { CloudRain, Cpu, Code2, GitCompare, BarChart3, Presentation, Heart } from 'lucide-react';
 
-// System Announcement Banner Component
-const GlobalBanner: React.FC = () => {
-  const { systemAnnouncement, setSystemAnnouncement } = useApp();
-  if (!systemAnnouncement) return null;
-
+const Footer: React.FC = () => {
   return (
-    <div className="bg-gradient-to-r from-[#5865F2] via-[#8B5CF6] to-[#22D3EE] text-white px-4 py-2 text-xs font-semibold text-center flex items-center justify-center gap-3 relative z-50">
-      <span>{systemAnnouncement}</span>
-      <button
-        onClick={() => setSystemAnnouncement(null)}
-        className="text-white/80 hover:text-white ml-2 text-xs font-bold"
-        title="Dismiss banner"
-      >
-        ✕
-      </button>
-    </div>
-  );
-};
+    <footer className="glass-panel border-t border-rain-border/80 mt-16 py-8 text-xs text-slate-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-slate-950 font-black shadow-md">
+              <CloudRain className="w-5 h-5 text-slate-950 stroke-[2.5]" />
+            </div>
+            <div>
+              <div className="font-bold text-white text-sm">
+                Smart Rain Alert System
+              </div>
+              <p className="text-[11px] text-slate-400">
+                A Low-Cost IoT Early-Warning System for Local Rainfall • University PBT Project
+              </p>
+            </div>
+          </div>
 
-export const AppContent: React.FC = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#101828] text-slate-800 dark:text-slate-100 transition-colors duration-200">
-      <GlobalBanner />
-      <Navbar />
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
+            <Link to="/" className="hover:text-sky-400 transition-colors">
+              Dashboard
+            </Link>
+            <Link to="/hardware" className="hover:text-sky-400 transition-colors">
+              Hardware & BOM
+            </Link>
+            <Link to="/firmware" className="hover:text-sky-400 transition-colors">
+              ESP32 Firmware
+            </Link>
+            <Link to="/comparison" className="hover:text-sky-400 transition-colors">
+              App vs System
+            </Link>
+            <Link to="/analytics" className="hover:text-sky-400 transition-colors">
+              Logs & CSV
+            </Link>
+            <Link to="/presentation" className="hover:text-sky-400 transition-colors text-sky-400 font-bold">
+              14-Slide Deck
+            </Link>
+          </div>
 
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/matches" element={<PeerMatchingPage />} />
-          <Route path="/exchanges" element={<SkillExchangePage />} />
-          <Route path="/live-room" element={<LiveRoomPage />} />
-          <Route path="/forum" element={<ForumPage />} />
-          <Route path="/gamification" element={<GamificationPage />} />
-          <Route path="/ai-assistant" element={<AIAssistantPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
-
-      <Footer />
-      <AIAssistantModal />
-    </div>
+          <div className="text-[11px] text-slate-400 font-mono text-center md:text-right">
+            <span>Sense • Predict • Alert</span>
+            <span className="block text-[10px] text-slate-400 mt-0.5">ESP32 + BME280 + Web Audio Synthesizer</span>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 
 export const App: React.FC = () => {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <AppProvider>
-          <Router>
-            <AppContent />
-          </Router>
-        </AppProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <TelemetryProvider>
+      <Router>
+        <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-sky-500 selection:text-slate-950">
+          <Navbar />
+
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<DashboardPage />} />
+              <Route path="/hardware" element={<HardwarePage />} />
+              <Route path="/firmware" element={<FirmwarePage />} />
+              <Route path="/comparison" element={<ComparisonPage />} />
+              <Route path="/analytics" element={<AnalyticsPage />} />
+              <Route path="/presentation" element={<PresentationPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+
+          <Footer />
+        </div>
+      </Router>
+    </TelemetryProvider>
   );
 };
 
 export default App;
-

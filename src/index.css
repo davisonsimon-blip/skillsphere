@@ -3,65 +3,35 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --color-brand-blue: #5865F2;
-    --color-brand-purple: #8B5CF6;
-    --color-brand-cyan: #22D3EE;
-    --color-brand-dark: #101828;
-    --color-brand-darker: #0B0F19;
-    --color-brand-light: #F8FAFC;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
-    transition: background-color 0.25s ease, color 0.25s ease;
+    background-color: #080E21;
+    color: #F1F5F9;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 }
 
-/* Glassmorphism & Custom Accents */
+/* Glassmorphism Weather Panels */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(21, 31, 61, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-.dark .glass-panel {
-  background: rgba(26, 35, 58, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(26, 38, 79, 0.65);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 4px 20px -2px rgba(88, 101, 242, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dark .glass-card {
-  background: rgba(30, 41, 59, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
-}
-
 .glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 12px 30px -4px rgba(2, 132, 199, 0.25);
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px -4px rgba(88, 101, 242, 0.15);
-  border-color: rgba(88, 101, 242, 0.3);
-}
-
-.dark .glass-card:hover {
-  border-color: rgba(139, 92, 246, 0.35);
-  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.5);
 }
 
 /* Custom Scrollbar */
@@ -71,22 +41,26 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #080E21;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
+  background: #23335F;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.7);
+  background: #38BDF8;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(51, 65, 85, 0.6);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(71, 85, 105, 0.9);
+/* Rain Effect Background */
+.rain-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
 }

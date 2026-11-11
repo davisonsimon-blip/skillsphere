@@ -12,12 +12,14 @@ import {
   ChevronRight,
   BookOpen,
   ArrowRightLeft,
-  X
+  X,
+  Award
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useApp } from '../context/AppContext';
 import { SkillExchange, ExchangeStatus, SkillLevel } from '../types';
 import { Link } from 'react-router-dom';
+import { CertificateModal } from '../components/common/CertificateModal';
 
 export const SkillExchangePage: React.FC = () => {
   const { currentUser, addTeachableSkill, addLearnableSkill, removeSkill } = useAuth();
@@ -29,6 +31,21 @@ export const SkillExchangePage: React.FC = () => {
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'all' | 'in_progress' | 'pending' | 'completed'>('all');
+
+  // Certificate Modal State
+  const [certData, setCertData] = useState<{
+    isOpen: boolean;
+    learnerName: string;
+    tutorName: string;
+    skillName: string;
+    sessionsCompleted: number;
+  }>({
+    isOpen: false,
+    learnerName: '',
+    tutorName: '',
+    skillName: '',
+    sessionsCompleted: 0,
+  });
 
   // New Skill Modals
   const [isAddTeachOpen, setIsAddTeachOpen] = useState(false);
@@ -81,14 +98,32 @@ export const SkillExchangePage: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B5CF6]/10 text-[#8B5CF6] text-xs font-bold uppercase tracking-wider">
             <Repeat className="w-3.5 h-3.5" />
             <span>100% Cashless Knowledge Barter</span>
-          </div>
+            {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Skill Exchange Hub
           </h1>
           <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
             Trade what you know for what you want to master. Zero monetary transactions—pure peer-to-peer reciprocity.
           </p>
-        </div>
+          {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
         <Link
           to="/matches"
@@ -97,7 +132,16 @@ export const SkillExchangePage: React.FC = () => {
           <Plus className="w-4 h-4" />
           <span>Propose New Swap</span>
         </Link>
-      </div>
+        {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
       {/* 2. My Inventory: Skills I Teach vs Skills I Learn */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -107,12 +151,39 @@ export const SkillExchangePage: React.FC = () => {
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-[#5865F2]/10 text-[#5865F2] flex items-center justify-center">
                 <BookOpen className="w-5 h-5" />
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
               <div>
                 <h3 className="font-bold text-base text-slate-900 dark:text-white">Skills You Teach</h3>
                 <p className="text-xs text-slate-500">Offered in your barter portfolio</p>
-              </div>
-            </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+              {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
             <button
               onClick={() => setIsAddTeachOpen(true)}
               className="px-3 py-1.5 rounded-xl bg-[#5865F2]/10 hover:bg-[#5865F2]/20 text-[#5865F2] dark:text-[#818CF8] text-xs font-bold transition-colors flex items-center gap-1"
@@ -120,7 +191,16 @@ export const SkillExchangePage: React.FC = () => {
               <Plus className="w-3.5 h-3.5" />
               Add Skill
             </button>
-          </div>
+            {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
           <div className="space-y-2.5 pt-1">
             {currentUser?.skillsToTeach.length === 0 ? (
@@ -138,8 +218,26 @@ export const SkillExchangePage: React.FC = () => {
                     <span className="text-slate-400 ml-2">({s.category})</span>
                     <div className="text-[11px] text-[#5865F2] mt-0.5">
                       {s.level} • {s.yearsOfExperience || 1}+ yrs experience
-                    </div>
-                  </div>
+                      {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                    {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
                   <button
                     onClick={() => removeSkill(s.id, 'teach')}
                     className="p-1 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50"
@@ -147,11 +245,38 @@ export const SkillExchangePage: React.FC = () => {
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
-                </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
               ))
             )}
-          </div>
-        </div>
+            {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+          {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
         {/* Learnable Skills Box */}
         <div className="glass-card rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 space-y-4">
@@ -159,12 +284,39 @@ export const SkillExchangePage: React.FC = () => {
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-[#8B5CF6]/10 text-[#8B5CF6] flex items-center justify-center">
                 <Sparkles className="w-5 h-5" />
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
               <div>
                 <h3 className="font-bold text-base text-slate-900 dark:text-white">Skills You Want to Learn</h3>
                 <p className="text-xs text-slate-500">Matching algorithm seeks peers for these</p>
-              </div>
-            </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+              {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
             <button
               onClick={() => setIsAddLearnOpen(true)}
               className="px-3 py-1.5 rounded-xl bg-[#8B5CF6]/10 hover:bg-[#8B5CF6]/20 text-[#8B5CF6] dark:text-[#A78BFA] text-xs font-bold transition-colors flex items-center gap-1"
@@ -172,7 +324,16 @@ export const SkillExchangePage: React.FC = () => {
               <Plus className="w-3.5 h-3.5" />
               Add Target
             </button>
-          </div>
+            {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
           <div className="space-y-2.5 pt-1">
             {currentUser?.skillsToLearn.length === 0 ? (
@@ -190,8 +351,26 @@ export const SkillExchangePage: React.FC = () => {
                     <span className="text-slate-400 ml-2">({s.category})</span>
                     <div className="text-[11px] text-[#8B5CF6] mt-0.5">
                       Target Level: {s.level}
-                    </div>
-                  </div>
+                      {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                    {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
                   <button
                     onClick={() => removeSkill(s.id, 'learn')}
                     className="p-1 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50"
@@ -199,12 +378,48 @@ export const SkillExchangePage: React.FC = () => {
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
-                </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
               ))
             )}
-          </div>
-        </div>
-      </div>
+            {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+          {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+        {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
       {/* 3. Filter Tabs */}
       <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
@@ -248,7 +463,16 @@ export const SkillExchangePage: React.FC = () => {
         >
           Completed ({exchanges.filter((e) => e.status === 'completed').length})
         </button>
-      </div>
+        {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
       {/* 4. Exchanges List */}
       <div className="space-y-4">
@@ -279,8 +503,26 @@ export const SkillExchangePage: React.FC = () => {
                     <p className="text-[11px] text-slate-400">
                       Initiated {new Date(ex.createdAt).toLocaleDateString()}
                     </p>
-                  </div>
-                </div>
+                    {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
                 <div className="flex items-center gap-2">
                   <span
@@ -296,8 +538,26 @@ export const SkillExchangePage: React.FC = () => {
                   >
                     {ex.status.replace('_', ' ')}
                   </span>
-                </div>
-              </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               {/* Skills Exchange Visualization */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-100 dark:border-slate-700/60">
@@ -306,21 +566,66 @@ export const SkillExchangePage: React.FC = () => {
                     You Provide:
                   </span>
                   <div className="text-sm font-extrabold text-[#5865F2]">{youTeach}</div>
-                </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
                 <div className="flex items-center justify-center">
                   <div className="w-8 h-8 rounded-full bg-[#5865F2]/10 text-[#5865F2] flex items-center justify-center font-bold">
                     ⇄
-                  </div>
-                </div>
+                    {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
                 <div className="space-y-0.5 text-left sm:text-right">
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     You Receive:
                   </span>
                   <div className="text-sm font-extrabold text-[#8B5CF6]">{youLearn}</div>
-                </div>
-              </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               {/* Message Note */}
               {ex.message && (
@@ -336,7 +641,16 @@ export const SkillExchangePage: React.FC = () => {
                   <span>
                     {ex.sessionsCompleted} of {ex.sessionsTarget} ({Math.round((ex.sessionsCompleted / ex.sessionsTarget) * 100)}%)
                   </span>
-                </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
                 <div className="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-[#5865F2] via-[#8B5CF6] to-emerald-400 rounded-full transition-all duration-300"
@@ -344,8 +658,26 @@ export const SkillExchangePage: React.FC = () => {
                       width: `${Math.min(100, (ex.sessionsCompleted / ex.sessionsTarget) * 100)}%`,
                     }}
                   ></div>
-                </div>
-              </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               {/* Action Buttons */}
               <div className="pt-2 flex flex-wrap items-center justify-end gap-2.5">
@@ -386,16 +718,78 @@ export const SkillExchangePage: React.FC = () => {
                 )}
 
                 {ex.status === 'completed' && (
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Successfully Completed! (+300 XP Earned)</span>
-                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>Completed! (+300 XP)</span>
+                      {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                    <button
+                      onClick={() =>
+                        setCertData({
+                          isOpen: true,
+                          learnerName: isUserRequester ? ex.requesterName : ex.partnerName,
+                          tutorName: isUserRequester ? ex.partnerName : ex.requesterName,
+                          skillName: youLearn,
+                          sessionsCompleted: ex.sessionsCompleted,
+                        })
+                      }
+                      className="px-3.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs"
+                    >
+                      <Award className="w-3.5 h-3.5 text-amber-500" />
+                      <span>View Credential</span>
+                    </button>
+                    {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
                 )}
-              </div>
-            </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+              {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
           );
         })}
-      </div>
+        {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
       {/* MODAL: ADD TEACHABLE SKILL */}
       {isAddTeachOpen && (
@@ -411,7 +805,16 @@ export const SkillExchangePage: React.FC = () => {
               >
                 <X className="w-4 h-4" />
               </button>
-            </div>
+              {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
             <form onSubmit={handleAddTeachSubmit} className="space-y-3.5 text-xs">
               <div>
@@ -426,7 +829,16 @@ export const SkillExchangePage: React.FC = () => {
                   onChange={(e) => setTeachSkillName(e.target.value)}
                   className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#5865F2]"
                 />
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
@@ -444,7 +856,16 @@ export const SkillExchangePage: React.FC = () => {
                   <option value="Business & Startup">Business & Startup</option>
                   <option value="Cyber Security">Cyber Security</option>
                 </select>
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
@@ -461,7 +882,16 @@ export const SkillExchangePage: React.FC = () => {
                     <option value="Advanced">Advanced</option>
                     <option value="Expert">Expert</option>
                   </select>
-                </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
                 <div>
                   <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
                     Years Exp.
@@ -474,8 +904,26 @@ export const SkillExchangePage: React.FC = () => {
                     onChange={(e) => setTeachYears(Number(e.target.value))}
                     className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                   />
-                </div>
-              </div>
+                  {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               <div className="pt-2 flex justify-end gap-2">
                 <button
@@ -491,10 +939,37 @@ export const SkillExchangePage: React.FC = () => {
                 >
                   Save Skill
                 </button>
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
             </form>
-          </div>
-        </div>
+            {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+          {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
       )}
 
       {/* MODAL: ADD LEARNABLE SKILL */}
@@ -511,7 +986,16 @@ export const SkillExchangePage: React.FC = () => {
               >
                 <X className="w-4 h-4" />
               </button>
-            </div>
+              {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
             <form onSubmit={handleAddLearnSubmit} className="space-y-3.5 text-xs">
               <div>
@@ -526,7 +1010,16 @@ export const SkillExchangePage: React.FC = () => {
                   onChange={(e) => setLearnSkillName(e.target.value)}
                   className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]"
                 />
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
@@ -543,7 +1036,16 @@ export const SkillExchangePage: React.FC = () => {
                   <option value="Languages & Linguistics">Languages & Linguistics</option>
                   <option value="Business & Startup">Business & Startup</option>
                 </select>
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
@@ -558,7 +1060,16 @@ export const SkillExchangePage: React.FC = () => {
                   <option value="Intermediate">Intermediate (Project Ready)</option>
                   <option value="Advanced">Advanced (Production Mastery)</option>
                 </select>
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
 
               <div className="pt-2 flex justify-end gap-2">
                 <button
@@ -574,11 +1085,47 @@ export const SkillExchangePage: React.FC = () => {
                 >
                   Save Goal
                 </button>
-              </div>
+                {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
             </form>
-          </div>
-        </div>
+            {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
+          {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
+    </div>
       )}
+      {/* MODAL: CERTIFICATE OF COMPLETION */}
+      <CertificateModal
+        isOpen={certData.isOpen}
+        onClose={() => setCertData((prev) => ({ ...prev, isOpen: false }))}
+        learnerName={certData.learnerName}
+        tutorName={certData.tutorName}
+        skillName={certData.skillName}
+        sessionsCompleted={certData.sessionsCompleted}
+      />
     </div>
   );
 };
