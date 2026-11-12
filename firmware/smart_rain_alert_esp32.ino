@@ -229,3 +229,4 @@ void sendTelemetryToCloud(int rainAdc, float rainIntensity, float temp, float hu
   }
   http.end();
 }
+

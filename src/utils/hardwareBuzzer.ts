@@ -96,3 +96,4 @@ class HardwareBuzzer {
 }
 
 export const hardwareBuzzer = new HardwareBuzzer();
+

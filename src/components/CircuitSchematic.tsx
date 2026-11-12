@@ -577,3 +577,4 @@ export const CircuitSchematic: React.FC = () => {
     </div>
   );
 };
+

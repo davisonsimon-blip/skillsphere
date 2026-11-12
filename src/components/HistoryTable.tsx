@@ -228,3 +228,4 @@ export const HistoryTable: React.FC = () => {
     </div>
   );
 };
+

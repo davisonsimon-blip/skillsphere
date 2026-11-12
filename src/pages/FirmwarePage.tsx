@@ -149,3 +149,4 @@ export const FirmwarePage: React.FC = () => {
     </div>
   );
 };
+

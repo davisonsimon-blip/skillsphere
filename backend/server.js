@@ -291,3 +291,4 @@ server.listen(PORT, () => {
   console.log(`🔌 Ingestion Endpoint for ESP32: POST http://<YOUR_IP>:${PORT}/api/telemetry`);
   console.log(`================================================================`);
 });
+

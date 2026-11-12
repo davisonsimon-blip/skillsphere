@@ -75,3 +75,4 @@ export interface PresentationSlide {
   keyHighlight?: string;
   badge?: string;
 }
+

@@ -229,3 +229,4 @@ export const RealWeatherWidget: React.FC = () => {
     </div>
   );
 };
+

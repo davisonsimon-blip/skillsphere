@@ -211,3 +211,4 @@ export const SensorGaugeCard: React.FC = () => {
     </div>
   );
 };
+

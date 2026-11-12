@@ -445,3 +445,4 @@ export const FirmwareViewer: React.FC = () => {
     </div>
   );
 };
+
